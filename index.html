@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>PDLC调光膜&调光玻璃 · 报价计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f4f8;
+            padding: 16px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.2s;
+        }
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+        }
+        .card-title .badge {
+            background: #3b82f6;
+            color: #fff;
+            font-size: 12px;
+            padding: 0 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 16px;
+            align-items: flex-end;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1 0 140px;
+            min-width: 120px;
+        }
+        .form-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #334155;
+            letter-spacing: 0.2px;
+        }
+        .form-group select,
+        .form-group input {
+            padding: 8px 10px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #fafbfc;
+            transition: border 0.2s, box-shadow 0.2s;
+            color: #0f172a;
+            height: 40px;
+            width: 100%;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            background: #fff;
+        }
+        .form-group select {
+            cursor: pointer;
+            appearance: auto;
+        }
+        .form-group input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .form-group input[type="number"]::-webkit-outer-spin-button,
+        .form-group input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .form-group .hint {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .btn-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #e2e8f0;
+            color: #475569;
+        }
+        .btn-outline:hover {
+            background: #f1f5f9;
+        }
+        .btn-sm {
+            padding: 4px 12px;
+            height: 32px;
+            font-size: 13px;
+        }
+        .btn-success {
+            background: #22c55e;
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: #16a34a;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 6px;
+            border-radius: 12px;
+            border: 1px solid #eef2f6;
+            -webkit-overflow-scrolling: touch;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 700px;
+        }
+        table th {
+            background: #f8fafc;
+            color: #334155;
+            font-weight: 600;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+        table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: middle;
+            word-break: break-word;
+        }
+        table tr:hover td {
+            background: #fafbfc;
+        }
+        .empty-row td {
+            color: #94a3b8;
+            text-align: center;
+            padding: 28px 0;
+            font-style: italic;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-top: 6px;
+        }
+        .summary-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid #eef2f6;
+        }
+        .summary-item .label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-item .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 2px;
+            word-break: break-word;
+        }
+        .summary-item .value .unit {
+            font-size: 14px;
+            font-weight: 400;
+            color: #64748b;
+            margin-left: 4px;
+        }
+        .summary-item.accent .value {
+            color: #2563eb;
+        }
+        .summary-item.warning .value {
+            color: #d97706;
+        }
+        .summary-item.success .value {
+            color: #16a34a;
+        }
+        .divider {
+            border: none;
+            border-top: 2px dashed #e2e8f0;
+            margin: 16px 0;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #eef2ff;
+            color: #4338ca;
+        }
+        .text-muted {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+        .text-sm {
+            font-size: 13px;
+        }
+        .fw-600 {
+            font-weight: 600;
+        }
+        .box-detail {
+            background: #fafbfc;
+            border-radius: 10px;
+            padding: 12px 16px;
+            border: 1px solid #eef2f6;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .box-detail strong {
+            color: #0f172a;
+        }
+        .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 8px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-actions select,
+        .header-actions button {
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1.5px solid #e2e8f0;
+            background: #fff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .header-actions select:focus,
+        .header-actions button:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .history-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .history-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background: #fff;
+            min-width: 220px;
+            max-height: 280px;
+            overflow-y: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
+            padding: 6px 0;
+            z-index: 100;
+        }
+        .history-dropdown-content.show {
+            display: block;
+        }
+        .history-dropdown-content .history-item {
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .history-dropdown-content .history-item:hover {
+            background: #f8fafc;
+        }
+        .history-dropdown-content .history-item .time {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+        .history-dropdown-content .history-empty {
+            padding: 14px;
+            color: #94a3b8;
+            text-align: center;
+        }
+        .detail-table {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .detail-table table {
+            min-width: 600px;
+        }
+        .detail-table table th {
+            background: #f1f5f9;
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+        .detail-table table td {
+            padding: 5px 10px;
+        }
+        .profit-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .profit-input-group label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .profit-input-group input,
+        .profit-input-group select {
+            padding: 5px 10px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fff;
+            height: 36px;
+        }
+        .profit-input-group input {
+            width: 100px;
+        }
+        .profit-input-group select {
+            width: 120px;
+        }
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+            .card {
+                padding: 12px 14px;
+            }
+            .form-group {
+                flex: 1 0 100%;
+                min-width: 0;
+            }
+            .form-row {
+                gap: 8px;
+            }
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .summary-item .value {
+                font-size: 17px;
+            }
+            table {
+                font-size: 13px;
+                min-width: 600px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .flex-between {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .profit-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .profit-input-group input,
+            .profit-input-group select {
+                width: 100%;
+            }
+            h1 {
+                font-size: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-title {
+                font-size: 15px;
+            }
+        }
+        .table-wrap::-webkit-scrollbar {
+            height: 6px;
+        }
+        .table-wrap::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .table-wrap::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .table-wrap::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ====== 顶部独立卡片 ====== -->
+        <div class="card" id="headerCard">
+            <div class="flex-between">
+                <h1 data-i18n="title">PDLC调光膜&调光玻璃 · 报价计算器</h1>
+                <div class="header-actions">
+                    <select id="langSelect" onchange="changeLanguage(this.value)">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                    <div class="history-dropdown">
+                        <button class="btn btn-outline btn-sm" onclick="toggleHistory()" data-i18n="historyBtn">📋 计算记录</button>
+                        <div class="history-dropdown-content" id="historyDropdown">
+                            <div class="history-empty" data-i18n="historyEmpty">暂无记录</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="clearAll()" data-i18n="clearBtn">🗑️ 清空全部</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 添加产品 ====== -->
+        <div class="card" id="addCard">
+            <div class="card-title" data-i18n="addProductTitle">➕ 添加产品</div>
+            <div class="form-row" style="margin-bottom:8px;">
+                <div class="form-group" style="flex:0 0 180px;">
+                    <label data-i18n="mainCategory">产品大类</label>
+                    <select id="mainCategory" onchange="onMainCategoryChange()">
+                        <option value="film">PDLC调光膜</option>
+                        <option value="glass">调光玻璃</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" id="productForm">
+                <div class="form-group">
+                    <label data-i18n="productType">产品类型</label>
+                    <select id="productType" onchange="onProductTypeChange()"></select>
+                </div>
+                <div class="form-group" id="specGroup">
+                    <label data-i18n="specColor">规格 / 颜色</label>
+                    <select id="productSpec" onchange="onSpecChange()"></select>
+                </div>
+                <div class="form-group" id="transGroup" style="display:none;">
+                    <label data-i18n="transparency">透明度</label>
+                    <select id="productTrans"></select>
+                </div>
+                <div class="form-group" id="glueColorGroup">
+                    <label data-i18n="glueColor">玻璃胶颜色</label>
+                    <select id="glueColor">
+                        <option value="透明">透明色</option>
+                        <option value="黑色">黑色</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="length">长度 (mm)</label>
+                    <input type="number" id="inputLength" value="1200" min="1" step="1" />
+                </div>
+                <div class="form-group">
+                    <label data-i18n="width">宽度 (mm)</label>
+                    <input type="number" id="inputWidth" value="800" min="1" step="1" />
+                </div>
+                <div class="form-group">
+                    <label data-i18n="qty">数量 (片)</label>
+                    <input type="number" id="inputQty" value="1" min="1" step="1" />
+                </div>
+                <div class="form-group" id="etchPriceGroup" style="display:none;">
+                    <label data-i18n="etchPrice">蚀刻单价 (元/㎡)</label>
+                    <input type="number" id="etchPrice" value="1500" min="1242" max="1998" step="1" />
+                    <span class="hint" data-i18n="etchHint">范围 1242~1998，按图案难易</span>
+                </div>
+                <div class="form-group" style="flex:0 0 auto; min-width:auto;">
+                    <button class="btn btn-primary" onclick="addProduct()" data-i18n="addBtn">➕ 添加</button>
+                </div>
+            </div>
+            <div class="highlight-box mt-8" style="font-size:13px; background:#f8fafc; border-left-color:#94a3b8;">
+                <span data-i18n="hintText">💡 提示：可添加多种产品，系统将统一汇总计算总价、配件及外箱。</span>
+                <span id="sizeLimitHint" data-i18n="sizeLimit">调光膜最短边 ≤1.8m，最长边 ≤50m；调光玻璃最短边 ≤2.0m。</span>
+            </div>
+        </div>
+
+        <!-- ====== 产品列表 ====== -->
+        <div class="card">
+            <div class="card-title">
+                <span data-i18n="productListTitle">📋 产品列表</span>
+                <span class="badge" id="itemCount" data-i18n="itemCountBadge">0 项</span>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30px;">#</th>
+                            <th data-i18n="thProduct">产品名称</th>
+                            <th data-i18n="thSpec">规格</th>
+                            <th data-i18n="thTrans">透明度</th>
+                            <th data-i18n="thGlueColor">玻璃胶颜色</th>
+                            <th data-i18n="thLength">长(mm)</th>
+                            <th data-i18n="thWidth">宽(mm)</th>
+                            <th data-i18n="thQty">数量</th>
+                            <th data-i18n="thArea">面积(㎡)</th>
+                            <th data-i18n="thPrice">单价(元/㎡)</th>
+                            <th data-i18n="thAmount">金额(元)</th>
+                            <th style="width:60px;" data-i18n="thAction">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <tr class="empty-row">
+                            <td colspan="12" data-i18n="noProduct">暂无产品，请添加</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex-between mt-16">
+                <div>
+                    <span class="text-muted" data-i18n="totalItemsLabel">已添加 <strong id="totalItems">0</strong> 项，</span>
+                    <span class="text-muted" data-i18n="totalAreaLabel">总面积 <strong id="totalAreaDisplay">0.00</strong> ㎡</span>
+                    <span class="text-muted" style="margin-left:12px;" id="areaBreakdown"></span>
+                </div>
+                <div>
+                    <span class="text-muted" data-i18n="totalPriceLabel">合计金额：</span>
+                    <strong style="font-size:20px; color:#2563eb;" id="totalPriceDisplay">¥0.00</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 汇总 & 外箱 ====== -->
+        <div class="card">
+            <div class="card-title">
+                <span data-i18n="summaryTitle">📦 汇总 &amp; 外箱计算</span>
+                <span class="badge" data-i18n="basedOnTotalArea">基于总面积</span>
+            </div>
+
+            <!-- 配件需求 -->
+            <div style="margin-bottom:14px;">
+                <div style="font-weight:600; font-size:15px; color:#0f172a; margin-bottom:8px;" data-i18n="accessoryTitle">🔌 配件需求</div>
+                <div class="summary-grid" id="accessoryGrid">
+                    <div class="summary-item"><div class="label" data-i18n="accPower">专用电源</div><div class="value" id="accPower">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="accWire">高温线</div><div class="value" id="accWire">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="accGlue">玻璃胶</div><div class="value" id="accGlue">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="accScraper">刮板</div><div class="value" id="accScraper">—</div></div>
+                </div>
+                <div style="font-size:13px; color:#64748b; margin-top:6px;" id="accDetail"></div>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- 详细清单 -->
+            <div style="margin-bottom:14px;">
+                <div style="font-weight:600; font-size:15px; color:#0f172a; margin-bottom:8px;" data-i18n="detailTitle">📄 详细清单</div>
+                <div id="detailContainer" class="detail-table">
+                    <div class="text-muted" style="padding:8px 0;" data-i18n="noDetail">暂无产品，添加后将显示详细清单</div>
+                </div>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- 外箱 -->
+            <div>
+                <div style="font-weight:600; font-size:15px; color:#0f172a; margin-bottom:8px;" data-i18n="boxTitle">📐 外箱尺寸 &amp; 重量</div>
+                <div class="summary-grid" id="boxGrid">
+                    <div class="summary-item accent"><div class="label" data-i18n="boxSpecLabel">外箱规格</div><div class="value" id="boxSpec">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="boxSizeLabel">外箱尺寸 (mm)</div><div class="value" id="boxSize" style="font-size:18px;">—</div></div>
+                    <div class="summary-item warning"><div class="label" data-i18n="boxWeightLabel">预估实际重量 (KG)</div><div class="value" id="boxWeight">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="boxVolWeightSea">体积重 · 海运 (KG)</div><div class="value" id="boxVolWeightSea">—</div></div>
+                    <div class="summary-item"><div class="label" data-i18n="boxVolWeightAir">体积重 · 空运 (KG)</div><div class="value" id="boxVolWeightAir">—</div></div>
+                </div>
+                <div class="box-detail mt-8" id="boxDetail">
+                    <span data-i18n="noBoxData">请添加至少一种产品以计算外箱。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 客户报价 ====== -->
+        <div class="card" id="customerQuoteCard">
+            <div class="card-title" data-i18n="customerQuoteTitle">📊 客户报价</div>
+            <div class="profit-input-group">
+                <label data-i18n="profitRateLabel">利润比例 (%)</label>
+                <input type="number" id="profitRate" value="0" min="0" step="0.5" oninput="updateCustomerQuote()" />
+                <label data-i18n="currency" style="margin-left:6px;">货币</label>
+                <select id="currencySelect" onchange="updateCustomerQuote()">
+                    <option value="CNY">人民币 (¥)</option>
+                    <option value="USD">美金 ($)</option>
+                    <option value="EUR">欧元 (€)</option>
+                    <option value="GBP">英镑 (£)</option>
+                </select>
+                <label id="exchangeRateLabel" style="margin-left:6px;">1 目标货币 = 人民币</label>
+                <input type="number" id="exchangeRate" value="1" min="0.0001" step="0.0001" oninput="updateCustomerQuote()" style="width:100px;" />
+                <span style="font-size:13px; color:#64748b;" data-i18n="profitHint">输入利润百分比，报价将自动更新</span>
+            </div>
+            <div id="customerQuoteContainer">
+                <div class="text-muted" style="padding:8px 0;">请添加产品后生成报价</div>
+            </div>
+            <div style="margin-top:12px;">
+                <button class="btn btn-success" onclick="downloadQuoteCSV()" data-i18n="downloadQuote">📥 下载报价表格 (CSV)</button>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div style="text-align:center; padding:14px 0 6px; color:#94a3b8; font-size:13px; border-top:1px solid #eef2f6; margin-top:8px;" data-i18n="footer">
+            PDLC调光膜&调光玻璃报价工具 · 数据版本 2026 · 仅供参考，实际报价请以最新价格为准。
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. 数据定义
+        // ============================================================
+
+        // 多语言映射
+        const LANG = {
+            zh: 'zh',
+            en: 'en'
+        };
+
+        // 产品类型名称国际化
+        const TYPE_NAMES = {
+            self_adhesive: { zh: '自贴调光膜', en: 'Self-adhesive Film' },
+            etched: { zh: '蚀刻自贴调光膜', en: 'Etched Self-adhesive Film' },
+            uv_print: { zh: 'UV打印调光膜', en: 'UV Print Film' },
+            colorful: { zh: '彩色调光膜', en: 'Colorful Film' },
+            glass_white: { zh: '调光玻璃 · 白色', en: 'Smart Glass · White' },
+            glass_colorful: { zh: '调光玻璃 · 彩色', en: 'Smart Glass · Colorful' },
+            sample: { zh: '样品 (固定尺寸)', en: 'Sample (Fixed Size)' },
+        };
+
+        // 规格名称国际化
+        const SPEC_NAMES = {
+            white: { zh: '白色', en: 'White' },
+            gray: { zh: '灰色', en: 'Gray' },
+            black: { zh: '黑色', en: 'Black' },
+            '5+5_普白': { zh: '5+5 普白', en: '5+5 Clear' },
+            '6+6_普白': { zh: '6+6 普白', en: '6+6 Clear' },
+            '5+5_超白': { zh: '5+5 超白', en: '5+5 Ultra Clear' },
+            '6+6_超白': { zh: '6+6 超白', en: '6+6 Ultra Clear' },
+            custom: { zh: '定制颜色', en: 'Custom Color' },
+            sample_83: { zh: '白色 83%', en: 'White 83%' },
+            sample_88: { zh: '白色 88%', en: 'White 88%' },
+            sample_92: { zh: '白色 92%', en: 'White 92%' },
+            sample_gray: { zh: '灰色', en: 'Gray' },
+        };
+
+        // 玻璃胶颜色国际化
+        const GLUE_NAMES = {
+            '透明': { zh: '透明色', en: 'Transparent' },
+            '黑色': { zh: '黑色', en: 'Black' },
+        };
+
+        // 颜色词国际化（用于高温线等）
+        const COLOR_NAMES = {
+            '红色': { zh: '红色', en: 'Red' },
+            '黑色': { zh: '黑色', en: 'Black' },
+        };
+
+        // 货币名称国际化
+        const CURRENCY_NAMES = {
+            CNY: { zh: '人民币 (¥)', en: 'CNY (¥)' },
+            USD: { zh: '美金 ($)', en: 'USD ($)' },
+            EUR: { zh: '欧元 (€)', en: 'EUR (€)' },
+            GBP: { zh: '英镑 (£)', en: 'GBP (£)' },
+        };
+
+        // 产品配置
+        const SELF_ADHESIVE = {
+            white: { label: '白色', trans: [{ key: '0.83', label: '83%', price: 140 }, { key: '0.88', label: '88%', price: 170 }, { key: '0.92', label: '92%', price: 230 }] },
+            gray: { label: '灰色', trans: [{ key: 'gray', label: '—', price: 190 }] },
+            black: { label: '黑色', trans: [{ key: 'black', label: '—', price: 1100 }] }
+        };
+
+        const PRODUCT_TYPES = {
+            self_adhesive: {
+                typeKey: 'self_adhesive',
+                mainCategory: 'film',
+                widthLimit: 1.8,
+                getSpecs: () => [{ key: 'white', label: 'white' }, { key: 'gray', label: 'gray' }, { key: 'black',
+                    label: 'black' }],
+                getTrans: (specKey) => { if (specKey === 'white') return SELF_ADHESIVE.white.trans; if (specKey === 'gray')
+                        return SELF_ADHESIVE.gray.trans; if (specKey === 'black') return SELF_ADHESIVE.black.trans; return []; },
+                getPrice: (specKey, transKey) => { const map = { 'white': { '0.83': 140, '0.88': 170, '0.92': 230 },
+                        'gray': { 'gray': 190 }, 'black': { 'black': 1100 } }; return (map[specKey] && map[specKey][transKey]) ||
+                        0; },
+                getLabel: (specKey, transKey, lang) => {
+                    const specName = SPEC_NAMES[specKey] ? SPEC_NAMES[specKey][lang] : specKey;
+                    const transDisplay = (transKey === 'fixed' || transKey === 'gray' || transKey === 'black') ? '—' : transKey;
+                    const typeName = TYPE_NAMES['self_adhesive'][lang];
+                    return `${typeName} ${specName} ${transDisplay}`.trim();
+                }
+            },
+            etched: {
+                typeKey: 'etched',
+                mainCategory: 'film',
+                widthLimit: 1.8,
+                getSpecs: () => [{ key: 'white', label: 'white' }],
+                getTrans: () => [{ key: '0.83', label: '83%', price: 'custom' }],
+                getPrice: (specKey, transKey, customPrice) => customPrice || 1500,
+                getLabel: (specKey, transKey, lang) => {
+                    const typeName = TYPE_NAMES['etched'][lang];
+                    return `${typeName} 83%`;
+                },
+                isCustomPrice: true,
+            },
+            uv_print: {
+                typeKey: 'uv_print',
+                mainCategory: 'film',
+                widthLimit: 1.8,
+                getSpecs: () => [{ key: 'white', label: 'white' }],
+                getTrans: () => [{ key: '0.83', label: '83%', price: 140 + 80 }],
+                getPrice: () => 140 + 80,
+                getLabel: (specKey, transKey, lang) => {
+                    const typeName = TYPE_NAMES['uv_print'][lang];
+                    return `${typeName} 83%`;
+                },
+            },
+            colorful: {
+                typeKey: 'colorful',
+                mainCategory: 'film',
+                widthLimit: 1.8,
+                getSpecs: () => [{ key: 'custom', label: 'custom' }],
+                getTrans: () => [{ key: '0.83', label: '83%', price: 140 + 50 }],
+                getPrice: () => 140 + 50,
+                getLabel: (specKey, transKey, lang) => {
+                    const typeName = TYPE_NAMES['colorful'][lang];
+                    const specName = SPEC_NAMES['custom'][lang];
+                    return `${typeName} ${specName} 83%`;
+                },
+            },
+            glass_white: {
+                typeKey: 'glass_white',
+                mainCategory: 'glass',
+                widthLimit: 2.0,
+                getSpecs: () => [{ key: '5+5_普白', label: '5+5_普白' }, { key: '6+6_普白', label: '6+6_普白' }, { key: '5+5_超白',
+                        label: '5+5_超白' }, { key: '6+6_超白', label: '6+6_超白' }],
+                getTrans: () => [{ key: '0.83', label: '83%', price: 0 }],
+                getPrice: (specKey) => { const map = { '5+5_普白': 300, '6+6_普白': 320, '5+5_超白': 340, '6+6_超白': 360 }; return map[
+                        specKey] || 0; },
+                getLabel: (specKey, transKey, lang) => {
+                    const typeName = TYPE_NAMES['glass_white'][lang];
+                    const specName = SPEC_NAMES[specKey] ? SPEC_NAMES[specKey][lang] : specKey;
+                    return `${typeName} ${specName}`;
+                }
+            },
+            glass_colorful: {
+                typeKey: 'glass_colorful',
+                mainCategory: 'glass',
+                widthLimit: 2.0,
+                getSpecs: () => [{ key: '5+5_普白', label: '5+5_普白' }, { key: '6+6_普白', label: '6+6_普白' }, { key: '5+5_超白',
+                        label: '5+5_超白' }, { key: '6+6_超白', label: '6+6_超白' }],
+                getTrans: () => [{ key: '0.83', label: '83%', price: 0 }],
+                getPrice: (specKey) => { const map = { '5+5_普白': 300 + 50, '6+6_普白': 320 + 50, '5+5_超白': 340 + 50,
+                        '6+6_超白': 360 + 50 }; return map[specKey] || 0; },
+                getLabel: (specKey, transKey, lang) => {
+                    const typeName = TYPE_NAMES['glass_colorful'][lang];
+                    const specName = SPEC_NAMES[specKey] ? SPEC_NAMES[specKey][lang] : specKey;
+                    return `${typeName} ${specName}`;
+                }
+            },
+            sample: {
+                typeKey: 'sample',
+                mainCategory: 'film',
+                widthLimit: 1.8,
+                getSpecs: () => [{ key: 'sample_83', label: 'sample_83' }, { key: 'sample_88', label: 'sample_88' },
+                    { key: 'sample_92', label: 'sample_92' }, { key: 'sample_gray', label: 'sample_gray' }],
+                getTrans: () => [{ key: 'fixed', label: '—', price: 0 }],
+                getPrice: (specKey) => { const map = { 'sample_83': 37.8, 'sample_88': 43.2, 'sample_92': 54,
+                        'sample_gray': 43.2 }; return map[specKey] || 0; },
+                getLabel: (specKey, transKey, lang) => {
+                    const specName = SPEC_NAMES[specKey] ? SPEC_NAMES[specKey][lang] : specKey;
+                    const typeName = TYPE_NAMES['sample'][lang];
+                    return `${typeName} ${specName}`;
+                },
+                isSample: true,
+                fixedLength: 297,
+                fixedWidth: 210,
+            }
+        };
+
+        const MAIN_CATEGORIES = {
+            film: { label: 'PDLC调光膜', subTypes: ['self_adhesive', 'etched', 'uv_print', 'colorful', 'sample'] },
+            glass: { label: '调光玻璃', subTypes: ['glass_white', 'glass_colorful'] }
+        };
+
+        const BOX_SPECS = [
+            { label: '1090', length: 1090, width: 360, height: 360, weight: 2.3, tube: 1.38, edge: 3.06, tray: 1.5 },
+            { label: '1290', length: 1290, width: 360, height: 360, weight: 2.46, tube: 1.58, edge: 3.06, tray: 1.5 },
+            { label: '1490', length: 1490, width: 360, height: 360, weight: 2.96, tube: 1.82, edge: 3.06, tray: 1.5 },
+            { label: '1690', length: 1690, width: 360, height: 360, weight: 3.66, tube: 2.08, edge: 3.06, tray: 1.5 },
+            { label: '1890', length: 1890, width: 360, height: 360, weight: 5.38, tube: 2.32, edge: 3.06, tray: 1.5 },
+            { label: '2090', length: 2090, width: 360, height: 360, weight: 3.72, tube: 2.56, edge: 3.06, tray: 1.5 },
+        ];
+
+        const POWER_SPECS = [{ watt: 30, maxArea: 3, price: 130 }, { watt: 50, maxArea: 5, price: 140 }, { watt: 100, maxArea: 10,
+                price: 180 }, { watt: 200, maxArea: 20, price: 220 }, { watt: 500, maxArea: 50, price: 320 }, ];
+        const WIRE_PRICE = 30;
+        const GLUE_PRICE = 40;
+        const SCRAPER_PRICE = 5;
+        const TAX_RATE = 1.08;
+
+        // ============================================================
+        // 2. 状态
+        // ============================================================
+        let products = [];
+        let history = [];
+        let currentLang = 'zh';
+
+        // ============================================================
+        // 3. 多语言翻译
+        // ============================================================
+        const i18n = {
+            zh: {
+                title: 'PDLC调光膜&调光玻璃 · 报价计算器',
+                addProductTitle: '➕ 添加产品',
+                mainCategory: '产品大类',
+                productType: '产品类型',
+                specColor: '规格 / 颜色',
+                transparency: '透明度',
+                glueColor: '玻璃胶颜色',
+                length: '长度 (mm)',
+                width: '宽度 (mm)',
+                qty: '数量 (片)',
+                etchPrice: '蚀刻单价 (元/㎡)',
+                etchHint: '范围 1242~1998，按图案难易',
+                addBtn: '➕ 添加',
+                hintText: '💡 提示：可添加多种产品，系统将统一汇总计算总价、配件及外箱。',
+                sizeLimit: '调光膜最短边 ≤1.8m，最长边 ≤50m；调光玻璃最短边 ≤2.0m。',
+                productListTitle: '📋 产品列表',
+                thProduct: '产品名称',
+                thSpec: '规格',
+                thTrans: '透明度',
+                thGlueColor: '玻璃胶颜色',
+                thLength: '长(mm)',
+                thWidth: '宽(mm)',
+                thQty: '数量',
+                thArea: '面积(㎡)',
+                thPrice: '单价(元/㎡)',
+                thAmount: '金额(元)',
+                thAction: '操作',
+                noProduct: '暂无产品，请添加',
+                totalItemsLabel: '已添加 <strong id="totalItems">0</strong> 项，',
+                totalAreaLabel: '总面积 <strong id="totalAreaDisplay">0.00</strong> ㎡',
+                totalPriceLabel: '合计金额：',
+                summaryTitle: '📦 汇总 & 外箱计算',
+                accessoryTitle: '🔌 配件需求',
+                accPower: '专用电源',
+                accWire: '高温线',
+                accGlue: '玻璃胶',
+                accScraper: '刮板',
+                detailTitle: '📄 详细清单',
+                noDetail: '暂无产品，添加后将显示详细清单',
+                boxTitle: '📐 外箱尺寸 & 重量',
+                boxSpecLabel: '外箱规格',
+                boxSizeLabel: '外箱尺寸 (mm)',
+                boxWeightLabel: '预估实际重量 (KG)',
+                boxVolWeightSea: '体积重 · 海运 (KG)',
+                boxVolWeightAir: '体积重 · 空运 (KG)',
+                noBoxData: '请添加至少一种产品以计算外箱。',
+                footer: 'PDLC调光膜&调光玻璃报价工具 · 数据版本 2026 · 仅供参考，实际报价请以最新价格为准。',
+                historyBtn: '📋 计算记录',
+                clearBtn: '🗑️ 清空全部',
+                historyEmpty: '暂无记录',
+                restore: '恢复',
+                delete: '删除',
+                areaBreakdown: '调光膜: {film} ㎡, 调光玻璃: {glass} ㎡, 样品: {sample} ㎡',
+                powerUnit: 'W',
+                wireUnit: '卷',
+                glueUnit: '支',
+                scraperUnit: '块',
+                detailProduct: '产品明细',
+                detailAccessory: '配件明细',
+                detailSpec: '规格/颜色',
+                detailPrice: '单价(含税)',
+                detailAmount: '金额',
+                detailTotal: '小计',
+                customerQuoteTitle: '📊 客户报价',
+                profitRateLabel: '利润比例 (%)',
+                profitHint: '输入利润百分比，报价将自动更新',
+                downloadQuote: '📥 下载报价表格 (CSV)',
+                quoteProduct: '产品明细',
+                quoteAccessory: '配件明细',
+                quotePrice: '报价单价',
+                quoteAmount: '报价金额',
+                quoteTotal: '总报价金额',
+                glueTransparent: '透明色',
+                glueBlack: '黑色',
+                currency: '货币',
+                exchangeRateLabel: '1 目标货币 = 人民币',
+                powerSupply: '专用电源',
+                scraperFree: '免费',
+                scraperPaid: '收费',
+                alertInvalidSize: '请输入有效的尺寸',
+                alertInvalidQty: '数量必须大于0',
+                alertFilmMinSide: '调光膜最短边不能超过1.8m (当前{side}mm)',
+                alertFilmMaxSide: '调光膜最长边不能超过50m (当前{side}mm)',
+                alertGlassMinSide: '调光玻璃最短边不能超过2.0m (当前{side}mm)',
+                confirmClear: '确认清空全部？清空前将自动保存记录。',
+                alertNoProduct: '请先添加产品',
+                glueTrans: '透明色',
+                glueBlack: '黑色',
+                powerFilm: '膜专用电源',
+                powerGlass: '玻璃专用电源',
+                boxAddCorner: '护角',
+                boxSuggestionTitle: '建议配件',
+                unitM2: '㎡',
+                unitKG: 'KG',
+                totalOrder: '总订单金额',
+                productAmount: '产品',
+                accessoryAmount: '配件',
+                itemCountBadge: '0 项',
+                basedOnTotalArea: '基于总面积',
+                colorRed: '红色',
+                colorBlack: '黑色',
+                onlyForFilm: '仅调光膜',
+                roundUp: '取整',
+                roll: '卷',
+                piece: '块',
+            },
+            en: {
+                title: 'PDLC Film & Smart Glass · Quotation Calculator',
+                addProductTitle: '➕ Add Product',
+                mainCategory: 'Main Category',
+                productType: 'Product Type',
+                specColor: 'Spec / Color',
+                transparency: 'Transparency',
+                glueColor: 'Silicone Color',
+                length: 'Length (mm)',
+                width: 'Width (mm)',
+                qty: 'Qty (pcs)',
+                etchPrice: 'Etching Price (¥/㎡)',
+                etchHint: 'Range 1242~1998, based on pattern complexity',
+                addBtn: '➕ Add',
+                hintText: '💡 Tip: Add multiple products, system will calculate total cost, accessories and box size.',
+                sizeLimit: 'Film: min side ≤1.8m, max side ≤50m; Glass: min side ≤2.0m.',
+                productListTitle: '📋 Product List',
+                thProduct: 'Product',
+                thSpec: 'Spec',
+                thTrans: 'Trans.',
+                thGlueColor: 'Silicone Color',
+                thLength: 'L(mm)',
+                thWidth: 'W(mm)',
+                thQty: 'Qty',
+                thArea: 'Area(㎡)',
+                thPrice: 'Price(¥/㎡)',
+                thAmount: 'Amount(¥)',
+                thAction: 'Action',
+                noProduct: 'No products, please add',
+                totalItemsLabel: 'Added <strong id="totalItems">0</strong> items,',
+                totalAreaLabel: 'Total area <strong id="totalAreaDisplay">0.00</strong> ㎡',
+                totalPriceLabel: 'Total amount:',
+                summaryTitle: '📦 Summary & Box Calculation',
+                accessoryTitle: '🔌 Accessories',
+                accPower: 'Power Supply',
+                accWire: 'High-temp Wire',
+                accGlue: 'Silicone',
+                accScraper: 'Squeegee',
+                detailTitle: '📄 Detailed List',
+                noDetail: 'No products, detailed list will appear after adding',
+                boxTitle: '📐 Box Size & Weight',
+                boxSpecLabel: 'Box Spec',
+                boxSizeLabel: 'Box Size (mm)',
+                boxWeightLabel: 'Est. Actual Weight (KG)',
+                boxVolWeightSea: 'Vol. Weight · Sea (KG)',
+                boxVolWeightAir: 'Vol. Weight · Air (KG)',
+                noBoxData: 'Please add at least one product to calculate box.',
+                footer: 'PDLC Film & Smart Glass Quotation Tool · Data v2026 · For reference only.',
+                historyBtn: '📋 History',
+                clearBtn: '🗑️ Clear All',
+                historyEmpty: 'No records',
+                restore: 'Restore',
+                delete: 'Delete',
+                areaBreakdown: 'Film: {film} ㎡, Glass: {glass} ㎡, Sample: {sample} ㎡',
+                powerUnit: 'W',
+                wireUnit: 'rolls',
+                glueUnit: 'pcs',
+                scraperUnit: 'pcs',
+                detailProduct: 'Product Details',
+                detailAccessory: 'Accessory Details',
+                detailSpec: 'Spec/Color',
+                detailPrice: 'Price (incl. tax)',
+                detailAmount: 'Amount',
+                detailTotal: 'Subtotal',
+                customerQuoteTitle: '📊 Customer Quote',
+                profitRateLabel: 'Profit Margin (%)',
+                profitHint: 'Enter profit percentage, quote will update automatically',
+                downloadQuote: '📥 Download Quote (CSV)',
+                quoteProduct: 'Product Details',
+                quoteAccessory: 'Accessory Details',
+                quotePrice: 'Quote Unit Price',
+                quoteAmount: 'Quote Amount',
+                quoteTotal: 'Total Quote Amount',
+                glueTransparent: 'Transparent',
+                glueBlack: 'Black',
+                currency: 'Currency',
+                exchangeRateLabel: '1 target currency = CNY',
+                powerSupply: 'Power Supply',
+                scraperFree: 'Free',
+                scraperPaid: 'Paid',
+                alertInvalidSize: 'Please enter valid dimensions',
+                alertInvalidQty: 'Quantity must be greater than 0',
+                alertFilmMinSide: 'Film min side cannot exceed 1.8m (current {side}mm)',
+                alertFilmMaxSide: 'Film max side cannot exceed 50m (current {side}mm)',
+                alertGlassMinSide: 'Glass min side cannot exceed 2.0m (current {side}mm)',
+                confirmClear: 'Clear all? History will be saved automatically.',
+                alertNoProduct: 'Please add products first',
+                glueTrans: 'Transparent',
+                glueBlack: 'Black',
+                powerFilm: 'Film Power Supply',
+                powerGlass: 'Glass Power Supply',
+                boxAddCorner: 'Corner Guard',
+                boxSuggestionTitle: 'Recommended Accessories',
+                unitM2: '㎡',
+                unitKG: 'KG',
+                totalOrder: 'Total Order Amount',
+                productAmount: 'Products',
+                accessoryAmount: 'Accessories',
+                itemCountBadge: '0 items',
+                basedOnTotalArea: 'Based on total area',
+                colorRed: 'Red',
+                colorBlack: 'Black',
+                onlyForFilm: 'Film only',
+                roundUp: 'rounded up',
+                roll: 'roll',
+                piece: 'pcs',
+            }
+        };
+
+        function t(key, params) {
+            let text = i18n[currentLang][key] || key;
+            if (params) {
+                for (let k in params) {
+                    text = text.replace(`{${k}}`, params[k]);
+                }
+            }
+            return text;
+        }
+
+        // ---- 语言切换 ----
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('langSelect').value = lang;
+
+            // 1. 更新所有带 data-i18n 的静态元素（跳过那些包含动态内容的）
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (key) {
+                    // 这些元素由 renderTable 或 updateSummary 动态更新，此处不覆盖
+                    if (key === 'totalItemsLabel' || key === 'totalAreaLabel' || key === 'totalPriceLabel' ||
+                        key === 'itemCountBadge' || key === 'basedOnTotalArea' ||
+                        key === 'areaBreakdown' // 由 updateAreaBreakdown 更新
+                    ) {
+                        return;
+                    }
+                    el.innerHTML = t(key);
+                }
+            });
+
+            // 2. 更新主类别下拉选项（Main Category）
+            const mainCatSelect = document.getElementById('mainCategory');
+            const filmOption = mainCatSelect.options[0];
+            const glassOption = mainCatSelect.options[1];
+            filmOption.text = currentLang === 'zh' ? 'PDLC调光膜' : 'PDLC Film';
+            glassOption.text = currentLang === 'zh' ? '调光玻璃' : 'Smart Glass';
+
+            // 3. 更新玻璃胶下拉选项
+            const glueSelect = document.getElementById('glueColor');
+            glueSelect.options[0].text = t('glueTransparent');
+            glueSelect.options[1].text = t('glueBlack');
+
+            // 4. 更新货币下拉选项
+            const currencySelect = document.getElementById('currencySelect');
+            for (let option of currencySelect.options) {
+                const value = option.value;
+                if (CURRENCY_NAMES[value]) {
+                    option.text = CURRENCY_NAMES[value][currentLang];
+                }
+            }
+
+            // 5. 更新汇率标签
+            updateExchangeRateLabel();
+
+            // 6. 更新尺寸限制提示
+            document.getElementById('sizeLimitHint').textContent = t('sizeLimit');
+
+            // 7. 更新 product list 底部的动态标签（totalItemsLabel, totalAreaLabel, totalPriceLabel）
+            // 这些标签的 innerHTML 包含 <strong> 和 id，需要保留 id 以便后续更新数字
+            document.querySelector('[data-i18n="totalItemsLabel"]').innerHTML = t('totalItemsLabel');
+            document.querySelector('[data-i18n="totalAreaLabel"]').innerHTML = t('totalAreaLabel');
+            document.querySelector('[data-i18n="totalPriceLabel"]').innerHTML = t('totalPriceLabel');
+
+            // 8. 更新产品列表右上角的 badge
+            document.getElementById('itemCount').textContent = t('itemCountBadge').replace('0', products.length);
+
+            // 9. 更新 "基于总面积" badge
+            document.querySelector('[data-i18n="basedOnTotalArea"]').textContent = t('basedOnTotalArea');
+
+            // 10. 重新填充下拉选项（产品类型、规格、透明度）
+            populateProductTypeSelect();
+            populateSpecSelect();
+            populateTransSelect();
+
+            // 11. 重新渲染所有动态内容（表格、汇总、详细清单、客户报价）
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            updateAreaBreakdown();
+            renderHistory();
+        }
+
+        // 填充产品类型下拉
+        function populateProductTypeSelect() {
+            const mainCat = document.getElementById('mainCategory').value;
+            const subTypes = MAIN_CATEGORIES[mainCat].subTypes;
+            const typeSelect = document.getElementById('productType');
+            typeSelect.innerHTML = subTypes.map(key => {
+                const typeName = TYPE_NAMES[key] ? TYPE_NAMES[key][currentLang] : key;
+                return `<option value="${key}">${typeName}</option>`;
+            }).join('');
+            onProductTypeChange();
+        }
+
+        // 填充规格下拉
+        function populateSpecSelect() {
+            const type = document.getElementById('productType').value;
+            const typeConfig = PRODUCT_TYPES[type];
+            if (!typeConfig) return;
+            const specSelect = document.getElementById('productSpec');
+            const specs = typeConfig.getSpecs();
+            specSelect.innerHTML = specs.map(s => {
+                const specName = SPEC_NAMES[s.key] ? SPEC_NAMES[s.key][currentLang] : s.key;
+                return `<option value="${s.key}">${specName}</option>`;
+            }).join('');
+            onSpecChange();
+        }
+
+        // 填充透明度下拉
+        function populateTransSelect() {
+            const type = document.getElementById('productType').value;
+            const typeConfig = PRODUCT_TYPES[type];
+            if (!typeConfig) return;
+            const specKey = document.getElementById('productSpec').value;
+            const transList = typeConfig.getTrans(specKey);
+            const transSelect = document.getElementById('productTrans');
+            if (transList && transList.length > 0 && !(transList.length === 1 && transList[0].key === 'fixed')) {
+                document.getElementById('transGroup').style.display = 'flex';
+                transSelect.innerHTML = transList.map(t => {
+                    const label = (t.key === 'gray' || t.key === 'black') ? '—' : t.label;
+                    return `<option value="${t.key}">${label}</option>`;
+                }).join('');
+            } else {
+                document.getElementById('transGroup').style.display = 'none';
+            }
+        }
+
+        // ---- 更新汇率标签 ----
+        function updateExchangeRateLabel() {
+            const currency = document.getElementById('currencySelect').value;
+            const symbols = { CNY: '¥', USD: '$', EUR: '€', GBP: '£' };
+            const symbol = symbols[currency] || '¥';
+            const label = document.getElementById('exchangeRateLabel');
+            if (currentLang === 'zh') {
+                label.textContent = `1 ${symbol} = 人民币`;
+            } else {
+                label.textContent = `1 ${symbol} = CNY`;
+            }
+        }
+
+        // ============================================================
+        // 4. UI控制
+        // ============================================================
+
+        function onMainCategoryChange() {
+            populateProductTypeSelect();
+            document.getElementById('sizeLimitHint').textContent = t('sizeLimit');
+        }
+
+        function onProductTypeChange() {
+            populateSpecSelect();
+            const type = document.getElementById('productType').value;
+            const etchGroup = document.getElementById('etchPriceGroup');
+            if (type === 'etched') {
+                etchGroup.style.display = 'flex';
+            } else {
+                etchGroup.style.display = 'none';
+            }
+            const lenInput = document.getElementById('inputLength');
+            const widInput = document.getElementById('inputWidth');
+            if (type === 'sample') {
+                const sampleConfig = PRODUCT_TYPES.sample;
+                lenInput.value = sampleConfig.fixedLength;
+                widInput.value = sampleConfig.fixedWidth;
+                lenInput.disabled = true;
+                widInput.disabled = true;
+            } else {
+                lenInput.disabled = false;
+                widInput.disabled = false;
+            }
+        }
+
+        function onSpecChange() {
+            populateTransSelect();
+        }
+
+        // ---- 添加产品 ----
+        function addProduct() {
+            const mainCat = document.getElementById('mainCategory').value;
+            const type = document.getElementById('productType').value;
+            const typeConfig = PRODUCT_TYPES[type];
+            const specKey = document.getElementById('productSpec').value;
+            const transSelect = document.getElementById('productTrans');
+            const transKey = (transSelect.style.display !== 'none') ? transSelect.value : 'fixed';
+            let length = parseInt(document.getElementById('inputLength').value) || 0;
+            let width = parseInt(document.getElementById('inputWidth').value) || 0;
+            const qty = parseInt(document.getElementById('inputQty').value) || 1;
+            const etchPriceInput = document.getElementById('etchPrice');
+            const etchPrice = (etchPriceInput.style.display !== 'none') ? parseFloat(etchPriceInput.value) || 1500 : null;
+            const glueColor = document.getElementById('glueColor').value;
+
+            if (length <= 0 || width <= 0) {
+                alert(t('alertInvalidSize'));
+                return;
+            }
+            if (qty <= 0) {
+                alert(t('alertInvalidQty'));
+                return;
+            }
+
+            const minSide = Math.min(length, width);
+            const maxSide = Math.max(length, width);
+            const limitMin = 1800;
+            const limitMax = 50000;
+
+            if (mainCat === 'film') {
+                if (minSide > limitMin) {
+                    alert(t('alertFilmMinSide', { side: minSide }));
+                    return;
+                }
+                if (maxSide > limitMax) {
+                    alert(t('alertFilmMaxSide', { side: maxSide }));
+                    return;
+                }
+            } else {
+                if (minSide > 2000) {
+                    alert(t('alertGlassMinSide', { side: minSide }));
+                    return;
+                }
+            }
+
+            let price = 0;
+            let isSample = false;
+            let fixedLength = null,
+                fixedWidth = null;
+
+            if (type === 'etched') {
+                price = etchPrice || 1500;
+            } else if (type === 'sample') {
+                price = typeConfig.getPrice(specKey);
+                isSample = true;
+                fixedLength = typeConfig.fixedLength;
+                fixedWidth = typeConfig.fixedWidth;
+                length = fixedLength;
+                width = fixedWidth;
+            } else {
+                price = typeConfig.getPrice(specKey, transKey);
+            }
+
+            const priceWithTax = price * TAX_RATE;
+            const area = (length / 1000) * (width / 1000) * qty;
+
+            products.push({
+                type,
+                specKey,
+                transKey,
+                length,
+                width,
+                qty,
+                price: priceWithTax,
+                isSample,
+                fixedLength,
+                fixedWidth,
+                area: area,
+                rawPrice: price,
+                mainCategory: mainCat,
+                glueColor: glueColor,
+            });
+
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            document.getElementById('inputQty').value = 1;
+            saveHistorySnapshot();
+        }
+
+        // ---- 删除 ----
+        function removeProduct(index) {
+            products.splice(index, 1);
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            saveHistorySnapshot();
+        }
+
+        // ---- 清空全部 ----
+        function clearAll() {
+            if (products.length === 0) return;
+            if (!confirm(t('confirmClear'))) return;
+            saveHistorySnapshot();
+            products = [];
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            saveHistoryToLocal();
+        }
+
+        // ---- 历史记录 ----
+        function saveHistorySnapshot() {
+            if (products.length === 0) return;
+            const last = history.length > 0 ? history[history.length - 1] : null;
+            const currentSnapshot = JSON.stringify(products);
+            if (last && JSON.stringify(last.products) === currentSnapshot) {
+                return;
+            }
+            const copy = JSON.parse(JSON.stringify(products));
+            history.push({ products: copy, timestamp: new Date().toLocaleString() });
+            renderHistory();
+            saveHistoryToLocal();
+        }
+
+        function saveHistoryToLocal() {
+            try {
+                localStorage.setItem('pdlc_history', JSON.stringify(history));
+            } catch (e) {}
+        }
+
+        function loadHistoryFromLocal() {
+            try {
+                const data = localStorage.getItem('pdlc_history');
+                if (data) {
+                    history = JSON.parse(data);
+                } else {
+                    history = [];
+                }
+            } catch (e) {
+                history = [];
+            }
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyDropdown');
+            if (history.length === 0) {
+                container.innerHTML = `<div class="history-empty">${t('historyEmpty')}</div>`;
+                return;
+            }
+            let html = '';
+            history.forEach((item, idx) => {
+                html += `<div class="history-item">
+                    <span>${item.timestamp} (${item.products.length} ${t('scraperUnit')})</span>
+                    <span>
+                        <button class="btn btn-sm btn-outline" onclick="restoreHistory(${idx})" style="height:28px;padding:0 10px;font-size:12px;">${t('restore')}</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteHistory(${idx})" style="height:28px;padding:0 10px;font-size:12px;">✕</button>
+                    </span>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function restoreHistory(idx) {
+            if (!history[idx]) return;
+            products = JSON.parse(JSON.stringify(history[idx].products));
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            document.getElementById('historyDropdown').classList.remove('show');
+            saveHistoryToLocal();
+        }
+
+        function deleteHistory(idx) {
+            history.splice(idx, 1);
+            renderHistory();
+            saveHistoryToLocal();
+        }
+
+        function toggleHistory() {
+            const dropdown = document.getElementById('historyDropdown');
+            dropdown.classList.toggle('show');
+            renderHistory();
+        }
+
+        document.addEventListener('click', function(e) {
+            const container = document.querySelector('.history-dropdown');
+            if (container && !container.contains(e.target)) {
+                document.getElementById('historyDropdown').classList.remove('show');
+            }
+        });
+
+        // ---- 渲染表格 ----
+        function renderTable() {
+            const tbody = document.getElementById('productTableBody');
+            if (products.length === 0) {
+                tbody.innerHTML = `<tr class="empty-row"><td colspan="12">${t('noProduct')}</td></tr>`;
+                document.getElementById('itemCount').textContent = t('itemCountBadge').replace('0', '0');
+                document.getElementById('totalItems').textContent = '0';
+                document.getElementById('totalAreaDisplay').textContent = '0.00';
+                document.getElementById('totalPriceDisplay').textContent = '¥0.00';
+                return;
+            }
+
+            let html = '';
+            let totalArea = 0,
+                totalPrice = 0;
+            products.forEach((p, idx) => {
+                const area = p.area || 0;
+                const amt = area * p.price;
+                totalArea += area;
+                totalPrice += amt;
+                const typeConfig = PRODUCT_TYPES[p.type];
+                const productLabel = typeConfig ? typeConfig.getLabel(p.specKey, p.transKey, currentLang) : p.type;
+                const specLabel = SPEC_NAMES[p.specKey] ? SPEC_NAMES[p.specKey][currentLang] : p.specKey;
+                const transLabel = (p.transKey === 'fixed' || p.transKey === 'gray' || p.transKey === 'black') ? '—' : p
+                .transKey;
+                const glueLabel = GLUE_NAMES[p.glueColor] ? GLUE_NAMES[p.glueColor][currentLang] : p.glueColor;
+                html += `<tr>
+                    <td>${idx+1}</td>
+                    <td><strong>${productLabel}</strong></td>
+                    <td>${specLabel}</td>
+                    <td>${transLabel}</td>
+                    <td>${glueLabel}</td>
+                    <td>${p.length}</td>
+                    <td>${p.width}</td>
+                    <td>${p.qty}</td>
+                    <td>${area.toFixed(4)}</td>
+                    <td>${p.price.toFixed(2)}</td>
+                    <td>${amt.toFixed(2)}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="removeProduct(${idx})">✕</button></td>
+                </tr>`;
+            });
+
+            tbody.innerHTML = html;
+            document.getElementById('itemCount').textContent = t('itemCountBadge').replace('0', products.length);
+            document.getElementById('totalItems').textContent = products.length;
+            document.getElementById('totalAreaDisplay').textContent = totalArea.toFixed(2);
+            document.getElementById('totalPriceDisplay').textContent = `¥${totalPrice.toFixed(2)}`;
+            updateAreaBreakdown();
+        }
+
+        function updateAreaBreakdown() {
+            let filmArea = 0,
+                glassArea = 0,
+                sampleArea = 0;
+            products.forEach(p => {
+                if (p.isSample) {
+                    sampleArea += p.area;
+                } else if (p.mainCategory === 'film') {
+                    filmArea += p.area;
+                } else if (p.mainCategory === 'glass') {
+                    glassArea += p.area;
+                } else {
+                    if (p.type === 'self_adhesive' || p.type === 'etched' || p.type === 'uv_print' || p.type === 'colorful')
+                        filmArea += p.area;
+                    else if (p.type === 'glass_white' || p.type === 'glass_colorful') glassArea += p.area;
+                    else filmArea += p.area;
+                }
+            });
+            const el = document.getElementById('areaBreakdown');
+            if (products.length === 0) {
+                el.textContent = '';
+                return;
+            }
+            const msg = t('areaBreakdown', { film: filmArea.toFixed(2), glass: glassArea.toFixed(2), sample: sampleArea.toFixed(
+                    2) });
+            el.textContent = msg;
+        }
+
+        // ---- 电源计算工具 ----
+        function calculatePower(area) {
+            if (area <= 0) return null;
+            let selectedPower = POWER_SPECS[0];
+            for (const ps of POWER_SPECS) {
+                if (ps.maxArea >= area) {
+                    selectedPower = ps;
+                    break;
+                }
+            }
+            let count = 1;
+            if (area > 50) {
+                count = Math.ceil(area / 50);
+                selectedPower = POWER_SPECS[POWER_SPECS.length - 1];
+            }
+            const price = selectedPower.price * TAX_RATE * count;
+            return { power: selectedPower, count: count, price: price };
+        }
+
+        // ---- 刮板信息 ----
+        function getScraperInfo(filmArea) {
+            if (filmArea <= 0) {
+                return { total: 0, free: 0, paid: 0, paidAmount: 0 };
+            }
+            const total = Math.ceil(filmArea / 5);
+            const free = 1;
+            const paid = Math.max(0, total - free);
+            const paidAmount = paid * SCRAPER_PRICE;
+            return { total, free, paid, paidAmount };
+        }
+
+        // ---- 更新汇总 ----
+        function updateSummary() {
+            if (products.length === 0) {
+                document.getElementById('accPower').textContent = '—';
+                document.getElementById('accWire').textContent = '—';
+                document.getElementById('accGlue').textContent = '—';
+                document.getElementById('accScraper').textContent = '—';
+                document.getElementById('accDetail').textContent = '';
+                document.getElementById('boxSpec').textContent = '—';
+                document.getElementById('boxSize').textContent = '—';
+                document.getElementById('boxWeight').textContent = '—';
+                document.getElementById('boxVolWeightSea').textContent = '—';
+                document.getElementById('boxVolWeightAir').textContent = '—';
+                document.getElementById('boxDetail').innerHTML = t('noBoxData');
+                return;
+            }
+
+            let totalArea = 0;
+            let filmArea = 0;
+            let glassArea = 0;
+            let glueAreaTransparent = 0;
+            let glueAreaBlack = 0;
+
+            products.forEach(p => {
+                totalArea += p.area;
+                if (p.mainCategory === 'film' || p.isSample) {
+                    filmArea += p.area;
+                }
+                if (p.mainCategory === 'glass') {
+                    glassArea += p.area;
+                }
+                if (p.glueColor === '透明') {
+                    glueAreaTransparent += p.area;
+                } else if (p.glueColor === '黑色') {
+                    glueAreaBlack += p.area;
+                }
+            });
+
+            // ---- 电源计算（膜和玻璃分开） ----
+            const filmPowerResult = calculatePower(filmArea);
+            const glassPowerResult = calculatePower(glassArea);
+            let powerDisplay = '';
+            let totalPowerPrice = 0;
+            if (filmPowerResult) {
+                powerDisplay += `${t('powerFilm')} ${filmPowerResult.power.watt}W × ${filmPowerResult.count}`;
+                totalPowerPrice += filmPowerResult.price;
+            }
+            if (glassPowerResult) {
+                if (powerDisplay) powerDisplay += '；';
+                powerDisplay += `${t('powerGlass')} ${glassPowerResult.power.watt}W × ${glassPowerResult.count}`;
+                totalPowerPrice += glassPowerResult.price;
+            }
+            if (!powerDisplay) powerDisplay = '—';
+
+            // 高温线
+            let wireCount = Math.ceil(totalArea / 30);
+            if (wireCount < 1) wireCount = 1;
+            const wirePrice = WIRE_PRICE * TAX_RATE * wireCount * 2;
+
+            // 玻璃胶
+            let glueCountTrans = 0,
+                glueCountBlack = 0;
+            if (glueAreaTransparent > 0) {
+                glueCountTrans = Math.ceil(glueAreaTransparent / 3);
+            }
+            if (glueAreaBlack > 0) {
+                glueCountBlack = Math.ceil(glueAreaBlack / 3);
+            }
+            const gluePrice = GLUE_PRICE * TAX_RATE * (glueCountTrans + glueCountBlack);
+
+            // 刮板
+            const scraperInfo = getScraperInfo(filmArea);
+            const scraperPrice = scraperInfo.paidAmount;
+
+            // 显示
+            document.getElementById('accPower').textContent = powerDisplay;
+            // 高温线显示：使用国际化颜色
+            const red = t('colorRed');
+            const black = t('colorBlack');
+            document.getElementById('accWire').textContent = `${red}×${wireCount} ${t('roll')}，${black}×${wireCount} ${t('roll')}`;
+            let glueDisplay = '';
+            if (glueCountTrans > 0) glueDisplay += `${t('glueTransparent')}×${glueCountTrans} `;
+            if (glueCountBlack > 0) glueDisplay += `${t('glueBlack')}×${glueCountBlack}`;
+            document.getElementById('accGlue').textContent = glueDisplay || '—';
+            let scraperDisplay = `${scraperInfo.total} ${t('scraperUnit')}`;
+            if (scraperInfo.total > 0) {
+                scraperDisplay += ` (${t('scraperFree')}${scraperInfo.free}，${t('scraperPaid')}${scraperInfo.paid})`;
+            }
+            document.getElementById('accScraper').textContent = scraperDisplay;
+
+            const totalAccPrice = totalPowerPrice + wirePrice + gluePrice + scraperPrice;
+            document.getElementById('accDetail').innerHTML =
+                `${t('detailTotal')}：<strong>¥${totalAccPrice.toFixed(2)}</strong> (${t('accPower')} ¥${totalPowerPrice.toFixed(2)} + ${t('accWire')} ¥${(wirePrice).toFixed(2)} + ${t('accGlue')} ¥${(gluePrice).toFixed(2)} + ${t('accScraper')} ¥${scraperPrice.toFixed(2)})`;
+
+            // ---- 外箱 ----
+            let minEdges = products.map(p => Math.min(p.length, p.width));
+            const maxMinEdge = Math.max(...minEdges);
+            const refValue = maxMinEdge + 200;
+            let selectedBox = BOX_SPECS[0];
+            for (const box of BOX_SPECS) {
+                if (box.length >= refValue) {
+                    selectedBox = box;
+                    break;
+                }
+            }
+            if (selectedBox.length < refValue) {
+                selectedBox = BOX_SPECS[BOX_SPECS.length - 1];
+            }
+            const finalLength = selectedBox.length + 30;
+            const finalWidth = selectedBox.width;
+            const finalHeight = selectedBox.height;
+
+            document.getElementById('boxSpec').textContent = `${selectedBox.label} + ${t('boxAddCorner')}`;
+            document.getElementById('boxSize').textContent = `${finalLength} × ${finalWidth} × ${finalHeight}`;
+
+            const boxTotalWeight = selectedBox.weight + selectedBox.tube + selectedBox.edge + selectedBox.tray;
+            const filmWeight = totalArea * 0.8;
+            let powerWeight = 0;
+            if (filmPowerResult) {
+                powerWeight += (filmPowerResult.power.watt <= 200 ? 1.6 : 2.0) * filmPowerResult.count;
+            }
+            if (glassPowerResult) {
+                powerWeight += (glassPowerResult.power.watt <= 200 ? 1.6 : 2.0) * glassPowerResult.count;
+            }
+            const wireWeight = 0.25 * wireCount * 2;
+            const glueWeight = 0.5 * (glueCountTrans + glueCountBlack);
+            const scraperWeight = 0.05 * scraperInfo.total;
+            const totalWeight = boxTotalWeight + filmWeight + powerWeight + wireWeight + glueWeight + scraperWeight;
+
+            document.getElementById('boxWeight').textContent = totalWeight.toFixed(2);
+
+            const lengthCm = finalLength / 10;
+            const widthCm = finalWidth / 10;
+            const heightCm = finalHeight / 10;
+            const volCm3 = lengthCm * widthCm * heightCm;
+            const volWeightSea = volCm3 / 5000;
+            const volWeightAir = volCm3 / 6000;
+            document.getElementById('boxVolWeightSea').textContent = volWeightSea.toFixed(2);
+            document.getElementById('boxVolWeightAir').textContent = volWeightAir.toFixed(2);
+
+            // 建议配件
+            let glueSuggestion = '';
+            if (glueCountTrans > 0) glueSuggestion += `${t('glueTransparent')}×${glueCountTrans} `;
+            if (glueCountBlack > 0) glueSuggestion += `${t('glueBlack')}×${glueCountBlack}`;
+            let powerSuggestion = '';
+            if (filmPowerResult) {
+                powerSuggestion += `${t('powerFilm')} ${filmPowerResult.power.watt}W × ${filmPowerResult.count} `;
+            }
+            if (glassPowerResult) {
+                if (powerSuggestion) powerSuggestion += '；';
+                powerSuggestion += `${t('powerGlass')} ${glassPowerResult.power.watt}W × ${glassPowerResult.count}`;
+            }
+            // 高温线建议
+            const wireSuggestion = `${red}×${wireCount} ${t('roll')}，${black}×${wireCount} ${t('roll')}`;
+            // 刮板建议
+            const scraperSuggestion = `${scraperInfo.total} ${t('scraperUnit')} (${t('scraperFree')}${scraperInfo.free}，${t('scraperPaid')}${scraperInfo.paid}) (${t('onlyForFilm')}，${filmArea.toFixed(2)} ${t('unitM2')} /5 ${t('roundUp')})`;
+
+            const detailHtml = `
+                <div style="font-weight:600; font-size:15px; margin-bottom:6px;">📦 ${t('boxSuggestionTitle')}</div>
+                <div style="display:grid; grid-template-columns:auto 1fr; gap:2px 20px; font-size:14px;">
+                    <span style="color:#64748b;">${t('totalAreaLabel').replace('<strong id="totalAreaDisplay">0.00</strong>','')}</span>
+                    <span><strong>${totalArea.toFixed(2)} ${t('unitM2')}</strong></span>
+                    <span style="color:#64748b;">${t('accPower')}</span>
+                    <span><strong>${powerSuggestion || '—'}</strong></span>
+                    <span style="color:#64748b;">${t('accWire')}</span>
+                    <span><strong>${wireSuggestion}</strong></span>
+                    <span style="color:#64748b;">${t('accGlue')}</span>
+                    <span><strong>${glueSuggestion || '—'}</strong></span>
+                    <span style="color:#64748b;">${t('accScraper')}</span>
+                    <span><strong>${scraperSuggestion}</strong></span>
+                </div>
+                <div style="margin-top:8px; font-size:13px; color:#64748b; background:#f1f5f9; padding:6px 12px; border-radius:6px;">
+                    💡 ${t('boxSizeLabel')} ${finalLength}×${finalWidth}×${finalHeight} mm，${t('boxWeightLabel')} ${totalWeight.toFixed(2)} ${t('unitKG')}，${t('boxVolWeightSea')} ${volWeightSea.toFixed(2)} ${t('unitKG')}，${t('boxVolWeightAir')} ${volWeightAir.toFixed(2)} ${t('unitKG')}。
+                </div>
+            `;
+            document.getElementById('boxDetail').innerHTML = detailHtml;
+        }
+
+        // ---- 渲染详细清单 ----
+        function renderDetail() {
+            const container = document.getElementById('detailContainer');
+            if (products.length === 0) {
+                container.innerHTML = `<div class="text-muted" style="padding:8px 0;">${t('noDetail')}</div>`;
+                return;
+            }
+
+            let html = `<div style="font-weight:600; margin-bottom:6px;">${t('detailProduct')}</div>`;
+            html += `<div class="table-wrap"><table>
+                <thead><tr>
+                    <th>#</th><th>${t('thProduct')}</th><th>${t('thSpec')}</th><th>${t('thTrans')}</th><th>${t('thGlueColor')}</th>
+                    <th>${t('thLength')}</th><th>${t('thWidth')}</th><th>${t('thQty')}</th>
+                    <th>${t('thArea')}</th><th>${t('thPrice')}</th><th>${t('thAmount')}</th>
+                </tr></thead><tbody>`;
+            let totalArea = 0,
+                totalPrice = 0;
+            products.forEach((p, idx) => {
+                const area = p.area || 0;
+                const amt = area * p.price;
+                totalArea += area;
+                totalPrice += amt;
+                const typeConfig = PRODUCT_TYPES[p.type];
+                const productLabel = typeConfig ? typeConfig.getLabel(p.specKey, p.transKey, currentLang) : p.type;
+                const specLabel = SPEC_NAMES[p.specKey] ? SPEC_NAMES[p.specKey][currentLang] : p.specKey;
+                const transLabel = (p.transKey === 'fixed' || p.transKey === 'gray' || p.transKey === 'black') ? '—' : p
+                .transKey;
+                const glueLabel = GLUE_NAMES[p.glueColor] ? GLUE_NAMES[p.glueColor][currentLang] : p.glueColor;
+                html += `<tr>
+                    <td>${idx+1}</td>
+                    <td>${productLabel}</td>
+                    <td>${specLabel}</td>
+                    <td>${transLabel}</td>
+                    <td>${glueLabel}</td>
+                    <td>${p.length}</td>
+                    <td>${p.width}</td>
+                    <td>${p.qty}</td>
+                    <td>${area.toFixed(4)}</td>
+                    <td>${p.price.toFixed(2)}</td>
+                    <td>${amt.toFixed(2)}</td>
+                </tr>`;
+            });
+            html += `<tr style="font-weight:600; background:#f8fafc;">
+                <td colspan="8" style="text-align:right;">${t('detailTotal')}</td>
+                <td>${totalArea.toFixed(4)}</td>
+                <td></td>
+                <td>${totalPrice.toFixed(2)}</td>
+            </tr>`;
+            html += `</tbody></table></div>`;
+
+            // 配件明细
+            let totalAreaAll = products.reduce((s, p) => s + p.area, 0);
+            let filmAreaAll = products.filter(p => p.mainCategory === 'film' || p.isSample).reduce((s, p) => s + p.area, 0);
+            let glassAreaAll = products.filter(p => p.mainCategory === 'glass').reduce((s, p) => s + p.area, 0);
+            let glueAreaTrans = 0,
+                glueAreaBlack = 0;
+            products.forEach(p => {
+                if (p.glueColor === '透明') glueAreaTrans += p.area;
+                else if (p.glueColor === '黑色') glueAreaBlack += p.area;
+            });
+            let wireCount = Math.ceil(totalAreaAll / 30);
+            if (wireCount < 1) wireCount = 1;
+            let glueCountTrans = 0,
+                glueCountBlack = 0;
+            if (glueAreaTrans > 0) glueCountTrans = Math.ceil(glueAreaTrans / 3);
+            if (glueAreaBlack > 0) glueCountBlack = Math.ceil(glueAreaBlack / 3);
+            const scraperInfo = getScraperInfo(filmAreaAll);
+
+            const filmPower = calculatePower(filmAreaAll);
+            const glassPower = calculatePower(glassAreaAll);
+
+            html += `<div style="font-weight:600; margin:16px 0 6px;">${t('detailAccessory')}</div>`;
+            html += `<div class="table-wrap"><table>
+                <thead><tr><th>${t('detailSpec')}</th><th>${t('thQty')}</th><th>${t('thPrice')}</th><th>${t('thAmount')}</th></tr></thead><tbody>`;
+            if (filmPower) {
+                html += `<tr><td>${t('powerFilm')} ${filmPower.power.watt}W</td><td>${filmPower.count}</td><td>${(filmPower.power.price * TAX_RATE).toFixed(2)}</td><td>${filmPower.price.toFixed(2)}</td></tr>`;
+            }
+            if (glassPower) {
+                html += `<tr><td>${t('powerGlass')} ${glassPower.power.watt}W</td><td>${glassPower.count}</td><td>${(glassPower.power.price * TAX_RATE).toFixed(2)}</td><td>${glassPower.price.toFixed(2)}</td></tr>`;
+            }
+            if (!filmPower && !glassPower) {
+                html += `<tr><td colspan="4">—</td></tr>`;
+            }
+            const red = t('colorRed');
+            const black = t('colorBlack');
+            html += `<tr><td>${t('accWire')} ${red}</td><td>${wireCount}</td><td>${(WIRE_PRICE * TAX_RATE).toFixed(2)}</td><td>${(WIRE_PRICE * TAX_RATE * wireCount).toFixed(2)}</td></tr>`;
+            html += `<tr><td>${t('accWire')} ${black}</td><td>${wireCount}</td><td>${(WIRE_PRICE * TAX_RATE).toFixed(2)}</td><td>${(WIRE_PRICE * TAX_RATE * wireCount).toFixed(2)}</td></tr>`;
+            if (glueCountTrans > 0) {
+                html += `<tr><td>${t('accGlue')} ${t('glueTransparent')}</td><td>${glueCountTrans}</td><td>${(GLUE_PRICE * TAX_RATE).toFixed(2)}</td><td>${(GLUE_PRICE * TAX_RATE * glueCountTrans).toFixed(2)}</td></tr>`;
+            }
+            if (glueCountBlack > 0) {
+                html += `<tr><td>${t('accGlue')} ${t('glueBlack')}</td><td>${glueCountBlack}</td><td>${(GLUE_PRICE * TAX_RATE).toFixed(2)}</td><td>${(GLUE_PRICE * TAX_RATE * glueCountBlack).toFixed(2)}</td></tr>`;
+            }
+            if (scraperInfo.free > 0) {
+                html += `<tr><td>${t('accScraper')} (${t('scraperFree')})</td><td>${scraperInfo.free}</td><td>0.00</td><td>0.00</td></tr>`;
+            }
+            if (scraperInfo.paid > 0) {
+                html += `<tr><td>${t('accScraper')} (${t('scraperPaid')})</td><td>${scraperInfo.paid}</td><td>${(SCRAPER_PRICE).toFixed(2)}</td><td>${(SCRAPER_PRICE * scraperInfo.paid).toFixed(2)}</td></tr>`;
+            }
+            const totalPowerPrice = (filmPower ? filmPower.price : 0) + (glassPower ? glassPower.price : 0);
+            const totalAcc = totalPowerPrice + (WIRE_PRICE * TAX_RATE * wireCount * 2) + (GLUE_PRICE * TAX_RATE * (glueCountTrans + glueCountBlack)) + scraperInfo.paidAmount;
+            html += `<tr style="font-weight:600; background:#f8fafc;"><td colspan="3" style="text-align:right;">${t('detailTotal')}</td><td>${totalAcc.toFixed(2)}</td></tr>`;
+            html += `</tbody></table></div>`;
+
+            const totalOrderAmount = totalPrice + totalAcc;
+            html += `<div style="margin-top:12px; font-weight:600; font-size:16px; text-align:right; background:#f8fafc; padding:8px 16px; border-radius:8px;">
+                ${t('totalOrder')}：¥${totalOrderAmount.toFixed(2)} (${t('productAmount')} ¥${totalPrice.toFixed(2)} + ${t('accessoryAmount')} ¥${totalAcc.toFixed(2)})
+            </div>`;
+
+            container.innerHTML = html;
+        }
+
+        // ---- 客户报价 ----
+        function updateCustomerQuote() {
+            updateExchangeRateLabel();
+
+            const container = document.getElementById('customerQuoteContainer');
+            if (products.length === 0) {
+                container.innerHTML = `<div class="text-muted" style="padding:8px 0;">${t('noDetail')}</div>`;
+                return;
+            }
+
+            const profitRate = parseFloat(document.getElementById('profitRate').value) || 0;
+            const profitFactor = 1 + profitRate / 100;
+
+            const currency = document.getElementById('currencySelect').value;
+            const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 1;
+            const rate = (exchangeRate <= 0) ? 1 : exchangeRate;
+
+            const symbols = {
+                CNY: '¥',
+                USD: '$',
+                EUR: '€',
+                GBP: '£'
+            };
+            const symbol = symbols[currency] || '¥';
+
+            // 产品明细
+            let totalProductQuote = 0;
+            let productRows = '';
+            products.forEach((p, idx) => {
+                const quotePrice = p.price * profitFactor / rate;
+                const quoteAmount = p.area * quotePrice;
+                totalProductQuote += quoteAmount;
+                const typeConfig = PRODUCT_TYPES[p.type];
+                const productLabel = typeConfig ? typeConfig.getLabel(p.specKey, p.transKey, currentLang) : p.type;
+                const specLabel = SPEC_NAMES[p.specKey] ? SPEC_NAMES[p.specKey][currentLang] : p.specKey;
+                const transLabel = (p.transKey === 'fixed' || p.transKey === 'gray' || p.transKey === 'black') ? '—' : p
+                .transKey;
+                productRows += `<tr>
+                    <td>${idx+1}</td>
+                    <td>${productLabel}</td>
+                    <td>${specLabel}</td>
+                    <td>${transLabel}</td>
+                    <td>${p.length}×${p.width}</td>
+                    <td>${p.qty}</td>
+                    <td>${p.area.toFixed(4)}</td>
+                    <td>${symbol} ${quotePrice.toFixed(2)}</td>
+                    <td>${symbol} ${quoteAmount.toFixed(2)}</td>
+                </tr>`;
+            });
+
+            // 配件
+            let totalAreaAll = products.reduce((s, p) => s + p.area, 0);
+            let filmAreaAll = products.filter(p => p.mainCategory === 'film' || p.isSample).reduce((s, p) => s + p.area, 0);
+            let glassAreaAll = products.filter(p => p.mainCategory === 'glass').reduce((s, p) => s + p.area, 0);
+            let glueAreaTrans = 0,
+                glueAreaBlack = 0;
+            products.forEach(p => {
+                if (p.glueColor === '透明') glueAreaTrans += p.area;
+                else if (p.glueColor === '黑色') glueAreaBlack += p.area;
+            });
+            let wireCount = Math.ceil(totalAreaAll / 30);
+            if (wireCount < 1) wireCount = 1;
+            let glueCountTrans = 0,
+                glueCountBlack = 0;
+            if (glueAreaTrans > 0) glueCountTrans = Math.ceil(glueAreaTrans / 3);
+            if (glueAreaBlack > 0) glueCountBlack = Math.ceil(glueAreaBlack / 3);
+            const scraperInfo = getScraperInfo(filmAreaAll);
+
+            const filmPower = calculatePower(filmAreaAll);
+            const glassPower = calculatePower(glassAreaAll);
+
+            const pwrPriceBase = (filmPower ? filmPower.power.price * TAX_RATE : 0);
+            const pwrPriceBaseGlass = (glassPower ? glassPower.power.price * TAX_RATE : 0);
+            const wirePriceBase = WIRE_PRICE * TAX_RATE;
+            const gluePriceBase = GLUE_PRICE * TAX_RATE;
+            const scraperPriceBase = SCRAPER_PRICE;
+
+            const pwrQuote = (filmPower ? pwrPriceBase * profitFactor / rate : 0);
+            const pwrQuoteGlass = (glassPower ? pwrPriceBaseGlass * profitFactor / rate : 0);
+            const wireQuote = wirePriceBase * profitFactor / rate;
+            const glueQuote = gluePriceBase * profitFactor / rate;
+            const scraperQuote = scraperPriceBase * profitFactor / rate;
+
+            let accRows = '';
+            if (filmPower) {
+                const filmTotal = pwrQuote * filmPower.count;
+                accRows += `<tr><td>${t('powerFilm')} ${filmPower.power.watt}W</td><td>${filmPower.count}</td><td>${symbol} ${pwrQuote.toFixed(2)}</td><td>${symbol} ${filmTotal.toFixed(2)}</td></tr>`;
+            }
+            if (glassPower) {
+                const glassTotal = pwrQuoteGlass * glassPower.count;
+                accRows += `<tr><td>${t('powerGlass')} ${glassPower.power.watt}W</td><td>${glassPower.count}</td><td>${symbol} ${pwrQuoteGlass.toFixed(2)}</td><td>${symbol} ${glassTotal.toFixed(2)}</td></tr>`;
+            }
+            if (!filmPower && !glassPower) {
+                accRows += `<tr><td colspan="4">—</td></tr>`;
+            }
+            const red = t('colorRed');
+            const black = t('colorBlack');
+            accRows += `<tr><td>${t('accWire')} ${red}</td><td>${wireCount}</td><td>${symbol} ${wireQuote.toFixed(2)}</td><td>${symbol} ${(wireQuote * wireCount).toFixed(2)}</td></tr>`;
+            accRows += `<tr><td>${t('accWire')} ${black}</td><td>${wireCount}</td><td>${symbol} ${wireQuote.toFixed(2)}</td><td>${symbol} ${(wireQuote * wireCount).toFixed(2)}</td></tr>`;
+            if (glueCountTrans > 0) {
+                accRows += `<tr><td>${t('accGlue')} ${t('glueTransparent')}</td><td>${glueCountTrans}</td><td>${symbol} ${glueQuote.toFixed(2)}</td><td>${symbol} ${(glueQuote * glueCountTrans).toFixed(2)}</td></tr>`;
+            }
+            if (glueCountBlack > 0) {
+                accRows += `<tr><td>${t('accGlue')} ${t('glueBlack')}</td><td>${glueCountBlack}</td><td>${symbol} ${glueQuote.toFixed(2)}</td><td>${symbol} ${(glueQuote * glueCountBlack).toFixed(2)}</td></tr>`;
+            }
+            if (scraperInfo.free > 0) {
+                accRows += `<tr><td>${t('accScraper')} (${t('scraperFree')})</td><td>${scraperInfo.free}</td><td>${symbol} 0.00</td><td>${symbol} 0.00</td></tr>`;
+            }
+            if (scraperInfo.paid > 0) {
+                const paidQuote = scraperQuote * scraperInfo.paid;
+                accRows += `<tr><td>${t('accScraper')} (${t('scraperPaid')})</td><td>${scraperInfo.paid}</td><td>${symbol} ${scraperQuote.toFixed(2)}</td><td>${symbol} ${paidQuote.toFixed(2)}</td></tr>`;
+            }
+
+            let totalAccQuote = 0;
+            if (filmPower) totalAccQuote += pwrQuote * filmPower.count;
+            if (glassPower) totalAccQuote += pwrQuoteGlass * glassPower.count;
+            totalAccQuote += wireQuote * wireCount * 2 + glueQuote * (glueCountTrans + glueCountBlack) + scraperQuote * scraperInfo.paid;
+
+            let html = `<div style="font-weight:600; margin-bottom:8px;">${t('quoteProduct')}</div>`;
+            html += `<div class="table-wrap"><table>
+                <thead><tr>
+                    <th>#</th><th>${t('thProduct')}</th><th>${t('thSpec')}</th><th>${t('thTrans')}</th>
+                    <th>尺寸(mm)</th><th>${t('thQty')}</th><th>${t('thArea')}</th>
+                    <th>${t('quotePrice')}</th><th>${t('quoteAmount')}</th>
+                </tr></thead><tbody>`;
+            html += productRows;
+            html += `<tr style="font-weight:600; background:#f8fafc;">
+                <td colspan="7" style="text-align:right;">${t('detailTotal')}</td>
+                <td></td>
+                <td>${symbol} ${totalProductQuote.toFixed(2)}</td>
+            </tr>`;
+            html += `</tbody></table></div>`;
+
+            html += `<div style="font-weight:600; margin:16px 0 8px;">${t('quoteAccessory')}</div>`;
+            html += `<div class="table-wrap"><table>
+                <thead><tr><th>${t('detailSpec')}</th><th>${t('thQty')}</th><th>${t('quotePrice')}</th><th>${t('quoteAmount')}</th></tr></thead><tbody>`;
+            html += accRows;
+            html += `<tr style="font-weight:600; background:#f8fafc;">
+                <td colspan="3" style="text-align:right;">${t('detailTotal')}</td>
+                <td>${symbol} ${totalAccQuote.toFixed(2)}</td>
+            </tr>`;
+            html += `</tbody></table></div>`;
+
+            const grandTotal = totalProductQuote + totalAccQuote;
+            html += `<div style="margin-top:12px; font-weight:600; font-size:16px; text-align:right; background:#eef2ff; padding:8px 16px; border-radius:8px;">
+                ${t('quoteTotal')}：${symbol} ${grandTotal.toFixed(2)}
+            </div>`;
+
+            container.innerHTML = html;
+        }
+
+        // ---- 下载CSV ----
+        function downloadQuoteCSV() {
+            if (products.length === 0) {
+                alert(t('alertNoProduct'));
+                return;
+            }
+            const profitRate = parseFloat(document.getElementById('profitRate').value) || 0;
+            const profitFactor = 1 + profitRate / 100;
+
+            const currency = document.getElementById('currencySelect').value;
+            const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 1;
+            const rate = (exchangeRate <= 0) ? 1 : exchangeRate;
+            const symbols = { CNY: '¥', USD: '$', EUR: '€', GBP: '£' };
+            const symbol = symbols[currency] || '¥';
+
+            let csv = '\uFEFF';
+            csv += t('quoteProduct') + '\n';
+            csv +=
+                `${t('thProduct')},${t('thSpec')},${t('thTrans')},${t('thLength')}×${t('thWidth')},${t('thQty')},${t('thArea')},${t('quotePrice')},${t('quoteAmount')}\n`;
+            products.forEach((p, idx) => {
+                const quotePrice = p.price * profitFactor / rate;
+                const quoteAmount = p.area * quotePrice;
+                const typeConfig = PRODUCT_TYPES[p.type];
+                const productLabel = typeConfig ? typeConfig.getLabel(p.specKey, p.transKey, currentLang) : p.type;
+                const specLabel = SPEC_NAMES[p.specKey] ? SPEC_NAMES[p.specKey][currentLang] : p.specKey;
+                const transLabel = (p.transKey === 'fixed' || p.transKey === 'gray' || p.transKey === 'black') ? '—' : p
+                .transKey;
+                csv +=
+                    `${productLabel},${specLabel},${transLabel},${p.length}×${p.width},${p.qty},${p.area.toFixed(4)},${symbol} ${quotePrice.toFixed(2)},${symbol} ${quoteAmount.toFixed(2)}\n`;
+            });
+            let totalProductQuote = products.reduce((s, p) => s + p.area * p.price * profitFactor / rate, 0);
+            csv += `,${t('detailTotal')},,,,${symbol} ${totalProductQuote.toFixed(2)}\n`;
+
+            csv += '\n' + t('quoteAccessory') + '\n';
+            csv += `${t('detailSpec')},${t('thQty')},${t('quotePrice')},${t('quoteAmount')}\n`;
+            let totalAreaAll = products.reduce((s, p) => s + p.area, 0);
+            let filmAreaAll = products.filter(p => p.mainCategory === 'film' || p.isSample).reduce((s, p) => s + p.area, 0);
+            let glassAreaAll = products.filter(p => p.mainCategory === 'glass').reduce((s, p) => s + p.area, 0);
+            let glueAreaTrans = 0,
+                glueAreaBlack = 0;
+            products.forEach(p => {
+                if (p.glueColor === '透明') glueAreaTrans += p.area;
+                else if (p.glueColor === '黑色') glueAreaBlack += p.area;
+            });
+            let wireCount = Math.ceil(totalAreaAll / 30);
+            if (wireCount < 1) wireCount = 1;
+            let glueCountTrans = 0,
+                glueCountBlack = 0;
+            if (glueAreaTrans > 0) glueCountTrans = Math.ceil(glueAreaTrans / 3);
+            if (glueAreaBlack > 0) glueCountBlack = Math.ceil(glueAreaBlack / 3);
+            const scraperInfo = getScraperInfo(filmAreaAll);
+
+            const filmPower = calculatePower(filmAreaAll);
+            const glassPower = calculatePower(glassAreaAll);
+
+            const pwrPriceBase = (filmPower ? filmPower.power.price * TAX_RATE : 0);
+            const pwrPriceBaseGlass = (glassPower ? glassPower.power.price * TAX_RATE : 0);
+            const wirePriceBase = WIRE_PRICE * TAX_RATE;
+            const gluePriceBase = GLUE_PRICE * TAX_RATE;
+            const scraperPriceBase = SCRAPER_PRICE;
+
+            const pwrQuote = pwrPriceBase * profitFactor / rate;
+            const pwrQuoteGlass = pwrPriceBaseGlass * profitFactor / rate;
+            const wireQuote = wirePriceBase * profitFactor / rate;
+            const glueQuote = gluePriceBase * profitFactor / rate;
+            const scraperQuote = scraperPriceBase * profitFactor / rate;
+
+            if (filmPower) {
+                const filmTotal = pwrQuote * filmPower.count;
+                csv += `${t('powerFilm')} ${filmPower.power.watt}W,${filmPower.count},${symbol} ${pwrQuote.toFixed(2)},${symbol} ${filmTotal.toFixed(2)}\n`;
+            }
+            if (glassPower) {
+                const glassTotal = pwrQuoteGlass * glassPower.count;
+                csv += `${t('powerGlass')} ${glassPower.power.watt}W,${glassPower.count},${symbol} ${pwrQuoteGlass.toFixed(2)},${symbol} ${glassTotal.toFixed(2)}\n`;
+            }
+            if (!filmPower && !glassPower) {
+                csv += `—,0,0,0\n`;
+            }
+            const red = t('colorRed');
+            const black = t('colorBlack');
+            csv += `${t('accWire')} ${red},${wireCount},${symbol} ${wireQuote.toFixed(2)},${symbol} ${(wireQuote * wireCount).toFixed(2)}\n`;
+            csv += `${t('accWire')} ${black},${wireCount},${symbol} ${wireQuote.toFixed(2)},${symbol} ${(wireQuote * wireCount).toFixed(2)}\n`;
+            if (glueCountTrans > 0) {
+                csv += `${t('accGlue')} ${t('glueTransparent')},${glueCountTrans},${symbol} ${glueQuote.toFixed(2)},${symbol} ${(glueQuote * glueCountTrans).toFixed(2)}\n`;
+            }
+            if (glueCountBlack > 0) {
+                csv += `${t('accGlue')} ${t('glueBlack')},${glueCountBlack},${symbol} ${glueQuote.toFixed(2)},${symbol} ${(glueQuote * glueCountBlack).toFixed(2)}\n`;
+            }
+            if (scraperInfo.free > 0) {
+                csv += `${t('accScraper')} (${t('scraperFree')}),${scraperInfo.free},${symbol} 0.00,${symbol} 0.00\n`;
+            }
+            if (scraperInfo.paid > 0) {
+                const paidQuote = scraperQuote * scraperInfo.paid;
+                csv += `${t('accScraper')} (${t('scraperPaid')}),${scraperInfo.paid},${symbol} ${scraperQuote.toFixed(2)},${symbol} ${paidQuote.toFixed(2)}\n`;
+            }
+            let totalAccQuote = 0;
+            if (filmPower) totalAccQuote += pwrQuote * filmPower.count;
+            if (glassPower) totalAccQuote += pwrQuoteGlass * glassPower.count;
+            totalAccQuote += wireQuote * wireCount * 2 + glueQuote * (glueCountTrans + glueCountBlack) + scraperQuote * scraperInfo.paid;
+            csv += `,${t('detailTotal')},,${symbol} ${totalAccQuote.toFixed(2)}\n`;
+
+            const grandTotal = totalProductQuote + totalAccQuote;
+            csv += `\n${t('quoteTotal')},${symbol} ${grandTotal.toFixed(2)}\n`;
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `客户报价_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // ============================================================
+        // 5. 初始化
+        // ============================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHistoryFromLocal();
+
+            document.getElementById('mainCategory').value = 'film';
+            onMainCategoryChange();
+
+            // 默认示例
+            const type = 'self_adhesive';
+            const specKey = 'white';
+            const transKey = '0.83';
+            const length = 1200;
+            const width = 800;
+            const qty = 1;
+            const typeConfig = PRODUCT_TYPES[type];
+            const price = typeConfig.getPrice(specKey, transKey) * TAX_RATE;
+            const area = (length / 1000) * (width / 1000) * qty;
+            products.push({
+                type,
+                specKey,
+                transKey,
+                length,
+                width,
+                qty,
+                price,
+                isSample: false,
+                area,
+                rawPrice: typeConfig.getPrice(specKey, transKey),
+                mainCategory: 'film',
+                glueColor: '透明',
+            });
+
+            renderTable();
+            updateSummary();
+            renderDetail();
+            updateCustomerQuote();
+            document.getElementById('inputQty').value = 1;
+
+            document.getElementById('langSelect').value = 'zh';
+            changeLanguage('zh');
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.closest('#productForm')) {
+                    e.preventDefault();
+                    addProduct();
+                }
+            });
+
+            document.getElementById('profitRate').addEventListener('input', updateCustomerQuote);
+            document.getElementById('currencySelect').addEventListener('change', function() {
+                updateExchangeRateLabel();
+                updateCustomerQuote();
+            });
+            document.getElementById('exchangeRate').addEventListener('input', updateCustomerQuote);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.history-dropdown')) {
+                document.getElementById('historyDropdown').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
